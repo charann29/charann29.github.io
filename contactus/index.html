@@ -80,9 +80,21 @@
     .dark\:text-neutral-400 { color: #5c4033 !important; }
     .dark\:text-gray-300 { color: #4a3222 !important; }
 
-    /* Keep white text ONLY inside primary-bg elements and CTA buttons */
-    .bg-\[var\(--primary\)\] *, [style*="background-color: var(--primary)"] *,
-    .bg-primary *, a[href*="apply.niatindia.com"],
+    /* Keep white text inside ALL primary-bg elements and CTA buttons */
+    .bg-\[var\(--primary\)\] *,
+    [style*="background-color: var(--primary)"] *,
+    [style*="background-color:var(--primary)"] *,
+    [style*="background:var(--primary)"] *,
+    [style*="background: var(--primary)"] *,
+    [style*="background:linear-gradient"][style*="var(--primary)"] *,
+    .bg-primary *, .bg-red-600 *,
+    .bg-\[var\(--primary\)\],
+    [style*="background:var(--primary)"],
+    [style*="background: var(--primary)"],
+    [style*="background-color:var(--primary)"],
+    [style*="background-color: var(--primary)"],
+    .bg-primary, .bg-red-600,
+    a[href*="apply.niatindia.com"],
     a[href*="apply.niatindia.com"] * { color: #fff !important; }
 
     /* --- Primary accent (orange-red) --- */
