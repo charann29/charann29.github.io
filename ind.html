@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Craft — Technical Audit Questionnaire | Elevate Box</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── HEADER BAR ─── */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--black);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            height: 52px;
+            border-bottom: 1px solid var(--gray-800);
+        }
+
+        .top-bar-left {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+        }
+
+        .top-bar-right {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .elevate-box-brand {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .elevate-box-brand span {
+            opacity: 0.4;
+            margin: 0 6px;
+        }
+
+        /* ─── COVER ─── */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 80px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: repeating-linear-gradient(90deg,
+                    transparent,
+                    transparent 39px,
+                    var(--gray-200) 39px,
+                    var(--gray-200) 40px);
+            opacity: 0.5;
+        }
+
+        .cover-badge {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cover-title {
+            font-family: var(--font-body);
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: var(--black);
+            max-width: 700px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .cover-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--gray-600);
+            max-width: 560px;
+            margin-bottom: 56px;
+            position: relative;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 48px;
+            position: relative;
+        }
+
+        .cover-meta-item {
+            border-left: 2px solid var(--black);
+            padding-left: 16px;
+        }
+
+        .cover-meta-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+
+        .cover-meta-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .cover-confidential {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            border: 1px solid var(--gray-300);
+            padding: 8px 20px;
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        .content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 40px 120px;
+        }
+
+        /* ─── PURPOSE SECTION ─── */
+        .purpose {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: 60px;
+        }
+
+        .purpose h2 {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+
+        .purpose p {
+            font-size: 16px;
+            color: var(--gray-700);
+            margin-bottom: 16px;
+            max-width: 720px;
+        }
+
+        .purpose .evidence-note {
+            margin-top: 24px;
+            padding: 16px 20px;
+            border-left: 3px solid var(--black);
+            background: var(--gray-100);
+            font-size: 14px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        /* ─── SUMMARY TABLE ─── */
+        .summary-section {
+            margin-bottom: 80px;
+        }
+
+        .summary-section h2 {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .summary-table thead th {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .summary-table thead th:last-child {
+            text-align: center;
+        }
+
+        .summary-table tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+        }
+
+        .summary-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+
+        .summary-table tbody td:last-child {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        .summary-table .section-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-300);
+            transition: border-color 0.2s;
+        }
+
+        .summary-table .section-link:hover {
+            border-color: var(--black);
+        }
+
+        .summary-table tfoot td {
+            background: var(--black);
+            color: var(--white);
+            font-weight: 700;
+            padding: 12px 16px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+        }
+
+        .summary-table tfoot td:last-child {
+            text-align: center;
+        }
+
+        /* ─── AUDIT SECTIONS ─── */
+        .audit-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .section-number {
+            font-family: var(--font-mono);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--black);
+            flex-shrink: 0;
+            min-width: 60px;
+        }
+
+        .section-title-block {
+            padding-top: 6px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            line-height: 1.2;
+        }
+
+        .section-context {
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            border-left: 3px solid var(--gray-400);
+            background: var(--gray-100);
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ─── SUBSECTIONS ─── */
+        .subsection {
+            margin-bottom: 48px;
+        }
+
+        .subsection-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .subsection-id {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+            background: var(--black);
+            padding: 3px 10px;
+            letter-spacing: 1px;
+        }
+
+        .subsection-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ─── QUESTION TABLE ─── */
+        .q-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 8px;
+        }
+
+        .q-table thead th {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .q-table thead th:first-child {
+            width: 44px;
+            text-align: center;
+        }
+
+        .q-table thead th:nth-child(2) {
+            width: 58%;
+        }
+
+        .q-table tbody tr {
+            border-bottom: 1px solid var(--gray-200);
+            transition: background 0.15s;
+        }
+
+        .q-table tbody tr:nth-child(even) {
+            background: var(--gray-100);
+        }
+
+        .q-table tbody tr:hover {
+            background: var(--gray-200);
+        }
+
+        .q-table tbody td {
+            padding: 14px;
+            vertical-align: top;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .q-table tbody td:first-child {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        .q-table .q-text {
+            color: var(--black);
+        }
+
+        .q-table .q-why {
+            color: var(--gray-600);
+            font-size: 13px;
+        }
+
+        .q-table .req-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+            background: var(--gray-800);
+            color: var(--white);
+            padding: 2px 6px;
+            margin: 2px 2px 0 0;
+            text-transform: uppercase;
+        }
+
+        /* ─── NEXT STEPS ─── */
+        .next-steps {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 2px solid var(--black);
+        }
+
+        .next-steps h2 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .next-steps-list li {
+            counter-increment: step;
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .next-steps-list li::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            background: var(--black);
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .next-steps-list li strong {
+            font-weight: 600;
+        }
+
+        .closing-note {
+            margin-top: 32px;
+            padding: 16px 20px;
+            border-left: 3px solid var(--black);
+            background: var(--gray-100);
+            font-size: 14px;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 2px solid var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-note {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+        }
+
+        /* ─── PROGRESS BAR ─── */
+        .progress-bar {
+            position: fixed;
+            top: 52px;
+            left: 0;
+            height: 2px;
+            background: var(--black);
+            z-index: 99;
+            transition: width 0.1s;
+        }
+
+        /* ─── BACK TO TOP ─── */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 40px;
+            height: 40px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 50;
+            font-size: 18px;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        /* ─── PRINT STYLES ─── */
+        @media print {
+
+            .top-bar,
+            .progress-bar,
+            .back-to-top {
+                display: none;
+            }
+
+            .cover {
+                min-height: auto;
+                page-break-after: always;
+                padding: 80px 40px;
+            }
+
+            .cover::before {
+                display: none;
+            }
+
+            .audit-section {
+                page-break-inside: avoid;
+            }
+
+            body {
+                font-size: 12px;
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .cover {
+                padding: 80px 24px 60px;
+            }
+
+            .content {
+                padding: 0 24px 80px;
+            }
+
+            .cover-meta {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .section-number {
+                font-size: 36px;
+                min-width: 44px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .top-bar {
+                padding: 0 16px;
+            }
+
+            .cover-confidential {
+                left: 24px;
+            }
+
+            .back-to-top {
+                right: 16px;
+            }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">Technical Audit — City Craft</div>
+        <div class="top-bar-right">
+            <div class="elevate-box-brand">
+                Elevate Box
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <!-- Cover -->
+    <section class="cover">
+        <div class="cover-badge">Elevate Box — Architecture & Engineering Audit</div>
+        <h1 class="cover-title">Technical Audit Questionnaire</h1>
+        <p class="cover-subtitle">Comprehensive architecture assessment for City Craft — a blue collar services
+            marketplace platform. Knowledge transfer & codebase evaluation.</p>
+        <div class="cover-meta">
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">Platform</div>
+                <div class="cover-meta-value">City Craft</div>
+            </div>
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">Date</div>
+                <div class="cover-meta-value" id="coverDate"></div>
+            </div>
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">Questions</div>
+                <div class="cover-meta-value" id="coverCount"></div>
+            </div>
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">Domains</div>
+                <div class="cover-meta-value" id="coverDomains"></div>
+            </div>
+        </div>
+        <div class="cover-confidential">Confidential</div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content" id="mainContent"></div>
+
+    <script>
+        const DATA = [
+            {
+                id: 1,
+                title: "Platform Architecture & Tech Stack",
+                context: "For a services marketplace like Urban Company, the architecture must handle real-time booking, geo-location matching, concurrent requests from consumers and partners, payment processing, and multi-city scaling. A template-based or monolithic setup will collapse under real traffic.",
+                subsections: [
+                    {
+                        id: "1.1",
+                        title: "Backend Framework & API Design",
+                        questions: [
+                            { q: "What backend framework is used (Node.js/Express, Django, Spring Boot, etc.)? Is it a monolith or microservices architecture? If monolith, is there a migration path planned?", w: "A monolith cannot scale individual services independently. Booking, payments, notifications, and partner matching have very different load profiles." },
+                            { q: "Is the API layer RESTful, GraphQL, or gRPC? Are API contracts documented using OpenAPI/Swagger? Can you share the API documentation?", w: "Without documented contracts, mobile teams build against undocumented behaviour. Any backend change can silently break both apps." },
+                            { q: "How is API versioning handled? What happens when a breaking change is deployed to the backend while users are still on older app versions?", w: "Without versioning, an app update can break for all users who haven't updated. Critical for a consumer-facing marketplace." },
+                            { q: "Is there an API gateway (Kong, AWS API Gateway, Nginx) in front of the services? How is request routing, throttling, and load balancing handled?", w: "Without a gateway, each service is directly exposed, creating security and reliability risks." },
+                            { q: "How are long-running operations handled? E.g., when a partner accepts a booking, how does the consumer get notified in real time — polling, SSE, or WebSockets?", w: "Polling wastes resources and adds latency. For a real-time booking platform, this is a core architectural decision." },
+                            { q: "How is the codebase structured? Is there a monorepo or separate repos? Is there a shared library for common utilities between the three apps (consumer, partner, admin)?", w: "Code duplication across apps leads to inconsistent business logic. Shared libraries reduce bugs in commission calculations, booking flows, etc." },
+                            { q: "What is the error handling strategy? Are errors standardized with error codes, or does each endpoint return ad-hoc error messages? How are unhandled exceptions tracked?", w: "Inconsistent errors make debugging painful and give users confusing messages. Untracked exceptions mean silent failures in production." },
+                        ]
+                    },
+                    {
+                        id: "1.2",
+                        title: "Database Architecture",
+                        questions: [
+                            { q: "What database(s) are being used? Is it a single database for all services (consumer, partner, admin, payments) or are there separate datastores?", w: "A single DB becomes the bottleneck and single point of failure. Booking queries and analytics queries competing for the same DB will degrade performance." },
+                            { q: "What is the database schema design for bookings, partner availability, service catalogs, and pricing? Can you share the ER diagram or schema documentation?", w: "Schema design directly impacts query performance, multi-city expansion, and feature extensibility. A poorly normalized schema makes new features extremely hard to add." },
+                            { q: "Is there read-write separation (read replicas)? How are read-heavy operations like search, catalog browsing, and dashboard analytics handled without impacting transactional workloads?", w: "Dashboard analytics queries running on the same DB as booking transactions will cause slowdowns during peak hours." },
+                            { q: "How is geospatial data stored and queried? What indexing strategy is used for location-based partner matching and Plus Code integration (Req #11)?", w: "Without spatial indexes, partner-to-consumer matching across multiple cities will be unacceptably slow." },
+                            { q: "What is the data migration strategy? How are schema changes deployed without downtime? Is there a migration tool in place (Flyway, Alembic, Knex)?", w: "Without controlled migrations, schema changes risk data loss or extended downtime during deployments." },
+                            { q: "How is partner calendar and availability data modeled (Req #3)? Can it handle overlapping bookings, time-zone differences, and admin overrides simultaneously?", w: "Calendar conflicts and double-booking are among the most common bugs in service marketplaces." },
+                        ]
+                    },
+                    {
+                        id: "1.3",
+                        title: "Mobile Applications (Android & iOS)",
+                        questions: [
+                            { q: "What technology are the mobile apps built with — native (Kotlin/Swift), cross-platform (React Native/Flutter), or hybrid (Ionic/WebView)? What version of the framework is in use?", w: "WebView-based apps have serious performance issues with maps, real-time tracking, and push notifications." },
+                            { q: "How is app state managed? Is there a proper state management solution (Redux, Bloc, Provider, Riverpod) or is state scattered across components?", w: "Poor state management leads to stale data, UI glitches, and race conditions in booking flows." },
+                            { q: "How is offline handling implemented? What happens if a partner loses connectivity mid-booking? Does the app queue actions and sync later?", w: "Blue-collar service partners often work in areas with poor connectivity. Offline resilience is not optional for this business model." },
+                            { q: "What is the app binary size? Are there code-splitting or lazy-loading strategies for feature modules like laundry (Req #24), B2B (Req #23)?", w: "Large app sizes hurt adoption in tier-2/3 cities where storage and bandwidth are limited." },
+                            { q: "How are deep links and universal links handled for referral programs (Reqs #5, #6)? Is the attribution tracked end-to-end?", w: "Broken deep links mean referral credits aren't attributed, directly impacting growth metrics." },
+                            { q: "How is map rendering and geocoding handled? What mapping SDK is used? How does it integrate with Google Plus Codes (Req #11) and partner live location tracking (Req #30)?", w: "Map performance directly impacts UX. Plus Code integration requires specific geocoding logic." },
+                            { q: "What is the push notification architecture (Reqs #26, #33)? FCM/APNs directly, or through a service like OneSignal? How are category-based routing and delivery tracking handled?", w: "Partner notifications for new leads must be instant and reliable. Missed notifications = missed bookings = lost revenue." },
+                            { q: "How is the CI/CD pipeline set up for mobile apps? What is the average time from code commit to production release? Are there automated tests?", w: "Slow release cycles mean bug fixes take weeks to reach users. No automated tests mean each release risks regressions." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Cloud Infrastructure & DevOps",
+                context: "The cloud setup determines operational cost, scalability ceiling, and disaster recovery capability. For a multi-city services platform, misconfigured cloud infrastructure can mean either paying 10x more than necessary or crashing under moderate load.",
+                subsections: [
+                    {
+                        id: "2.1",
+                        title: "Cloud Provider & Services",
+                        questions: [
+                            { q: "Which cloud provider is being used (AWS, GCP, Azure)? Can you share the current architecture diagram showing all services and how they connect?", w: "Without a documented architecture diagram, no one truly understands the system. This is the most basic deliverable from any consultant." },
+                            { q: "What compute services are running the backend — EC2/VMs, ECS/Fargate containers, Lambda/Cloud Functions, or managed platforms? What are the instance sizes and counts?", w: "Over-provisioned VMs waste money. Under-provisioned ones cause outages. Serverless may not suit long-running booking processes." },
+                            { q: "Is the billing done directly by the cloud provider to the client, or through the consultant's account as consolidated billing? Who owns the cloud account and root credentials?", w: "If the consultant owns the cloud account, the client has a critical vendor lock-in risk. Migrating away could mean rebuilding from scratch." },
+                            { q: "What is the current monthly cloud spend? Can you provide a cost breakdown by service (compute, database, storage, CDN, third-party APIs)?", w: "Many setups overspend on compute while under-investing in CDN and caching. The cost breakdown reveals architectural inefficiencies." },
+                            { q: "Are Infrastructure-as-Code tools being used (Terraform, CloudFormation, Pulumi)? Can the entire infrastructure be recreated from code?", w: "Without IaC, infrastructure is a snowflake. Server crashes require manual intervention, increasing downtime risk." },
+                            { q: "How are environments separated (dev, staging, production)? Is there a staging environment that mirrors production for testing before releases?", w: "Deploying directly to production without staging is reckless for a platform handling real-money transactions." },
+                        ]
+                    },
+                    {
+                        id: "2.2",
+                        title: "Scalability & Auto-Scaling",
+                        questions: [
+                            { q: "How many concurrent users can the current setup handle? Has any load testing been performed (k6, JMeter, Locust)? Can you share the load test results?", w: "Without load testing, capacity claims are guesswork. The system might crash at 100 concurrent bookings." },
+                            { q: "Is auto-scaling configured for compute and database tiers? What metrics trigger scaling? What are the min/max instance limits?", w: "Auto-scaling that's too aggressive wastes money. Too conservative means outages during promotions or festival periods." },
+                            { q: "How is the system designed to handle multi-city expansion (Req #2)? Is it multi-tenant by city, or a single deployment? How does adding a new city impact existing performance?", w: "If adding Vizag/Vijayawada (Req #29) requires code changes or infrastructure updates, expansion will be slow and error-prone." },
+                            { q: "Is there a CDN in front of static assets, app images, and service catalog media? What is the cache-hit ratio?", w: "Without CDN, every image load hits the origin server. For a catalog-heavy app, this directly impacts load times and costs." },
+                            { q: "How is database connection pooling configured? What happens when the app scales horizontally — do all new instances open fresh DB connections?", w: "DB connection exhaustion is one of the most common scaling failures. Adding more app instances can actually crash the database." },
+                        ]
+                    },
+                    {
+                        id: "2.3",
+                        title: "Backup, DR & Data Durability",
+                        questions: [
+                            { q: "What is the database backup strategy? How frequently are backups taken? Where are backups stored? Are they in a different region from the primary database?", w: "Same-region backups don't protect against regional outages. For financial data, data loss is unacceptable." },
+                            { q: "Has a disaster recovery drill ever been performed? What is the documented RTO (Recovery Time Objective) and RPO (Recovery Point Objective)?", w: "Untested backups are not backups. If no one has ever restored from a backup, you don't know if the process works." },
+                            { q: "How are uploaded partner documents (KYC, training certs for Reqs #13, #18) stored? Is there versioning and lifecycle management on the storage bucket?", w: "Partner documents have legal retention requirements. Accidental deletion without versioning could create compliance issues." },
+                            { q: "Is there point-in-time recovery capability for the database? If a bad deployment corrupts booking data at 2 PM, can you restore to 1:59 PM?", w: "Full backup restores lose all data since the last backup. Point-in-time recovery is essential for transactional platforms." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Security & Data Privacy",
+                context: "A services marketplace handles PII (names, addresses, phone numbers), financial data (bank accounts for payouts), location data (real-time partner tracking), and KYC documents. Security gaps here have legal consequences under India's DPDP Act, 2023.",
+                subsections: [
+                    {
+                        id: "3.1",
+                        title: "Authentication & Authorization",
+                        questions: [
+                            { q: "How is user authentication implemented? Custom-built JWT, or managed service (Firebase Auth, Auth0, Cognito)? How are sessions managed across consumer, partner, and admin apps?", w: "Custom auth implementations frequently have vulnerabilities. Session management bugs can allow one user to see another's bookings." },
+                            { q: "How is role-based access control (RBAC) implemented for the admin dashboard, especially category-wise login (Req #9)? Is it enforced at the API level or only at the UI level?", w: "UI-only RBAC means anyone with API access can bypass restrictions. A category admin could access financial data they shouldn't see." },
+                            { q: "How are API keys, database credentials, and third-party secrets managed? Hardcoded in codebase, env variables, or secrets manager (Vault, AWS Secrets Manager)?", w: "Hardcoded secrets in a codebase are a critical vulnerability. If the repo is ever exposed, all systems are compromised." },
+                            { q: "Is there rate limiting on authentication endpoints (login, OTP)? What happens after multiple failed attempts? Is there brute-force protection?", w: "Without rate limiting, attackers can brute-force OTPs (typically 4-6 digit codes) in minutes." },
+                            { q: "How is OTP generation and validation handled? Is the OTP visible in the admin dashboard (Req #31) — and if so, what access controls prevent misuse by admin staff?", w: "OTP visibility in dashboards is a serious security consideration. Admin staff with OTP access could impersonate any user." },
+                        ]
+                    },
+                    {
+                        id: "3.2",
+                        title: "Data Protection & Compliance",
+                        questions: [
+                            { q: "Is data encrypted at rest (database, file storage) and in transit (TLS 1.2+)? What encryption standard is used? Who manages the encryption keys?", w: "Unencrypted data at rest means a database breach exposes everything in plaintext, including bank account details." },
+                            { q: "How is PII handled? Is there data masking for support staff, anonymization for analytics, and a data retention/deletion policy?", w: "Under DPDP Act 2023, users have the right to data erasure. Without a deletion pipeline, compliance requests become engineering emergencies." },
+                            { q: "Are partner KYC documents (Aadhaar, PAN, bank details for Req #18) stored with appropriate access controls? Who can access them and is access logged?", w: "KYC documents are highly sensitive. Unrestricted access or missing audit logs create both legal liability and fraud risk." },
+                            { q: "Is there a Web Application Firewall (WAF) configured? Has a penetration test or security audit ever been conducted on the platform?", w: "Without WAF, the application is exposed to OWASP Top 10 attacks. Un-audited apps almost always have exploitable vulnerabilities." },
+                            { q: "How is payment data handled? Is the platform PCI-DSS compliant? Are credit card or UPI details stored on your servers, or handled entirely by the payment gateway?", w: "Storing payment credentials without PCI compliance is a legal violation and a massive liability." },
+                            { q: "How is partner location data (Req #30) handled from a privacy perspective? Is location tracked only during active bookings, or continuously? Is there a consent mechanism?", w: "Continuous location tracking without consent violates privacy regulations and can lead to legal action from partners." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Business Logic & Domain Architecture",
+                context: "This is where the requirements either work or break. A technically sound system with broken business logic is useless. For a services marketplace, the booking engine, pricing engine, partner matching, and payout system are the core — and they are notoriously hard to get right.",
+                subsections: [
+                    {
+                        id: "4.1",
+                        title: "Booking & Scheduling Engine",
+                        questions: [
+                            { q: "How does the booking engine handle concurrent requests? If two consumers try to book the same partner in the same slot, how is the race condition resolved? Optimistic or pessimistic locking?", w: "Double-booking is the #1 trust-killer in a services marketplace. Without proper concurrency control, it will happen at scale." },
+                            { q: "How is the booking state machine designed? What are all possible states (created, confirmed, assigned, in-progress, completed, cancelled, disputed, refunded)? Are transitions enforced at the DB level?", w: "Missing or loose state transitions lead to impossible states (e.g., cancelled AND completed), corrupting reporting and payouts." },
+                            { q: "How does the booking upgrade flow work (Req #17)? Can a consumer modify a live booking (add services, change time)? How does this affect partner scheduling and pricing?", w: "Mid-booking modifications are complex. Without proper handling, you get pricing mismatches, schedule conflicts, and payout errors." },
+                            { q: "How is the partner matching algorithm designed? Does it consider proximity, rating, availability, category specialization, and workload distribution? Or is it round-robin?", w: "Poor matching means high no-show rates, partner dissatisfaction, and customer complaints. The matching algorithm is the competitive advantage." },
+                            { q: "How is the scheduling system designed for the laundry flow (Req #24) — pick-up, processing, delivery — fundamentally different from single-visit services?", w: "Laundry is a multi-step, multi-day workflow. Shoehorning it into a single-visit model will create UX and operational nightmares." },
+                        ]
+                    },
+                    {
+                        id: "4.2",
+                        title: "Pricing, Commission & Payouts",
+                        questions: [
+                            { q: "How is the pricing engine designed? Hardcoded per service, or a configurable rules engine supporting city-wise pricing, time-based pricing, package pricing (Req #4), subscription discounts (Req #10)?", w: "Hardcoded pricing means every price change requires a code deployment. Multi-city expansion (Req #2) becomes impossible without a dynamic pricing engine." },
+                            { q: "How are commissions calculated? Is the model configurable per city, per category, per partner tier? How does it interact with the MG plan (Reqs #15, #16)?", w: "Commission + MG plan interaction is complex. If a partner on a 4000/50-jobs MG plan earns more through commissions, how is reconciliation done?" },
+                            { q: "How is the automatic payout system designed (Req #1)? What is the reconciliation process? How are disputes, refunds, and chargebacks deducted from partner payouts?", w: "Incorrect payouts destroy partner trust instantly. Reconciliation must account for cancellations, refunds, MG adjustments, and commission tiers." },
+                            { q: "How is quotation building designed for PEC and other categories (Req #32)? Is it a templated system with configurable line items, or free-form text?", w: "Quotation management needs version control, approval workflows, and pricing rule compliance. A simple text field won't scale." },
+                            { q: "How are coupons and promotional offers handled (Req #21)? Is there a coupon engine supporting stacking rules, usage limits, category restrictions, and expiry management?", w: "Without a proper coupon engine, promotional campaigns can be exploited (unlimited usage, stacking discounts) causing direct financial loss." },
+                        ]
+                    },
+                    {
+                        id: "4.3",
+                        title: "Partner Lifecycle & Performance",
+                        questions: [
+                            { q: "How is partner self-onboarding designed (Req #18)? What is the document verification pipeline? Manual admin review, OCR-based auto-verification, or third-party KYC APIs?", w: "Manual verification doesn't scale. If City Craft expands to new cities, the onboarding bottleneck will slow growth." },
+                            { q: "How is the training and screening module (Req #13) integrated? Are training video completions tracked (Req #8)? Is there a scoring system that gates partner activation?", w: "If training isn't gated, unqualified partners can start taking bookings, directly impacting service quality." },
+                            { q: "How are partner performance thresholds (Req #14) enforced? What happens when rating drops below threshold, or no-show rate exceeds limits? Automated suspension or manual?", w: "Manual enforcement means inconsistent quality control. Automated thresholds with escalation workflows are essential at scale." },
+                            { q: "How is partner live location tracked (Req #30) across all categories? Foreground service, background service, or only when app is active? Update frequency and battery impact?", w: "Background location tracking is notoriously difficult on both iOS and Android. A naive implementation will either drain batteries or stop working when backgrounded." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Observability, Analytics & Monitoring",
+                context: "You cannot improve what you cannot measure. Product analytics (Req #34) is explicitly called out, but operational monitoring is equally critical. Without observability, production issues are discovered by angry users, not by your monitoring systems.",
+                subsections: [
+                    {
+                        id: "5.1",
+                        title: "Monitoring & Logging",
+                        questions: [
+                            { q: "What monitoring stack is in place? Is there APM using New Relic, Datadog, or open-source (Prometheus + Grafana)?", w: "Without APM, you're blind to slow API calls, memory leaks, and database query bottlenecks." },
+                            { q: "How is centralized logging handled? ELK stack, CloudWatch Logs, or equivalent? Can you trace a single booking request across all services it touches?", w: "Distributed tracing is essential for debugging booking failures. Without it, a failed booking could be caused by any of 5+ services." },
+                            { q: "Are alerting rules configured for critical business metrics? E.g., booking failure rate > 5%, payment gateway errors, partner app crashes, API latency spikes?", w: "Alerts on technical metrics alone are not enough. Business metric alerts catch revenue-impacting issues that technical metrics miss." },
+                            { q: "What is the current crash rate for both mobile apps? Is there crash reporting (Firebase Crashlytics, Sentry)? What is the crash-free session rate?", w: "A crash rate above 1% significantly impacts app store ratings and user retention." },
+                        ]
+                    },
+                    {
+                        id: "5.2",
+                        title: "Product Analytics",
+                        questions: [
+                            { q: "What analytics platform is implemented for Req #34? Firebase Analytics, Mixpanel, Amplitude, or custom? What events are currently being tracked?", w: "Without proper event tracking, product decisions are based on gut feeling instead of data." },
+                            { q: "Are there analytics dashboards showing: booking conversion rate, partner utilization, average order value, customer retention cohorts, referral attribution?", w: "These metrics directly impact business strategy. If they're not being tracked, City Craft is operating blind." },
+                            { q: "How is A/B testing infrastructure set up? Can you test different pricing, UI flows, or matching algorithms with a subset of users before full rollout?", w: "Without A/B testing, every change is a leap of faith. For a two-sided marketplace, small changes can have outsized negative effects." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Code Quality & Engineering Practices",
+                context: "This section determines whether the codebase can be maintained, extended, and debugged by a new team. Poor code quality is the most expensive technical debt because it compounds with every feature addition.",
+                subsections: [
+                    {
+                        id: "6.1",
+                        title: "Code Quality & Documentation",
+                        questions: [
+                            { q: "Is there a README or onboarding doc that allows a new developer to set up the entire dev environment locally within a day? Are there setup scripts?", w: "If it takes more than a day to set up, every new developer loses days of productivity. Basic engineering hygiene check." },
+                            { q: "What percentage of the codebase has test coverage (unit, integration, e2e)? Are tests run automatically in CI/CD? Can you share the coverage report?", w: "Without tests, every code change risks breaking existing functionality. Low coverage means the new team will be afraid to refactor." },
+                            { q: "Is there a linter and code formatter configured (ESLint, Prettier, SwiftLint, ktlint)? Is it enforced in CI, or optional?", w: "Inconsistent code style slows down code reviews and increases cognitive load for new developers." },
+                            { q: "How is technical debt tracked? Is there a documented list of known issues, workarounds, and shortcuts? How many TODO/HACK comments exist in the codebase?", w: "Undocumented technical debt means surprises during development. A transparent handover requires an honest debt inventory." },
+                            { q: "Are there architecture decision records (ADRs) or design documents explaining why key technical choices were made?", w: "Without ADRs, the new team will question every decision and potentially undo good choices while keeping bad ones." },
+                        ]
+                    },
+                    {
+                        id: "6.2",
+                        title: "Deployment & Release Management",
+                        questions: [
+                            { q: "What is the CI/CD pipeline setup? Which tool (GitHub Actions, GitLab CI, Jenkins)? What is the average deployment frequency and lead time?", w: "Manual or infrequent deployments mean bug fixes take longer to reach users. Automated CI/CD is non-negotiable." },
+                            { q: "How are database migrations handled during deployments? Can the backend be deployed without downtime (blue-green, rolling, canary)?", w: "Downtime during deployment means lost bookings and revenue. Zero-downtime deployment is essential." },
+                            { q: "How is feature flagging implemented? Can new features (laundry, B2B) be rolled out to a subset of users without a full release?", w: "Feature flags enable gradual rollouts and instant rollbacks. Without them, a broken feature affects all users simultaneously." },
+                            { q: "How are app store releases managed? Is there an over-the-air update mechanism (CodePush, Expo Updates) for critical fixes?", w: "App store reviews take 1-3 days. Without OTA updates, critical bug fixes have a multi-day delay." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: "Third-Party Integrations & Vendor Risk",
+                context: "A services marketplace relies heavily on third-party integrations for payments, maps, notifications, SMS, and communications. Each integration is a potential point of failure and a recurring cost.",
+                subsections: [
+                    {
+                        id: "7.1",
+                        title: "Integration Inventory & Risk Assessment",
+                        questions: [
+                            { q: "Can you provide a complete list of all third-party services integrated (payment gateway, SMS, maps, push notifications, email, analytics, CDN)? For each: vendor, pricing model, contract terms, account ownership.", w: "If accounts are under the consultant's name, access can be lost during transition. Each integration needs ownership transfer." },
+                            { q: "What payment gateway is integrated? How does it handle split payments (customer → platform → partner after commission)? Does it support automatic payouts (Req #1)?", w: "Not all gateways support marketplace payouts. Retrofitting a different gateway is a major engineering effort." },
+                            { q: "How is SMS/WhatsApp communication handled for OTPs, booking confirmations, and partner notifications? What is the delivery rate and cost per message?", w: "SMS delivery rates in India vary by provider. A 90% rate means 10% of users don't receive OTPs — directly impacting booking completion." },
+                            { q: "What is the Google Maps API usage and cost? Are API key restrictions in place? Is the key exposed in client-side code?", w: "Exposed Maps API keys can be stolen. For a location-heavy app with tracking (Req #30), Maps costs can escalate quickly." },
+                            { q: "How is the CC-Shop integration (Req #7) designed? White-label e-commerce, embedded WebView, or deep-link to external platform?", w: "Each approach has different UX, maintenance, and data sync implications. WebView integrations often feel broken and slow." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 8,
+                title: "Scalability for Planned Requirements",
+                context: "This section maps pending requirements to the current architecture to assess feasibility. If the architecture cannot support these without major rewrites, the cost and timeline estimates change dramatically.",
+                subsections: [
+                    {
+                        id: "8.1",
+                        title: "Architecture Readiness for Pending Features",
+                        questions: [
+                            { q: "Subscription plans (Req #10) need recurring billing, usage tracking, and auto-renewal. Does the current payment infrastructure support recurring payments, or would this require a new integration?", w: "Adding subscriptions to a one-time payment platform requires new payment flows, billing cycles, and cancellation handling." },
+                            { q: "The B2B module (Req #23) changes the user model — corporate accounts with multiple users, invoicing instead of instant payment, volume discounts. How would this be architected on the current system?", w: "B2B is not a feature flag. It needs separate account hierarchy, billing engine, and potentially different service workflows." },
+                            { q: "Multi-city expansion (Reqs #2, #29) needs city-specific pricing, commissions, pincode mapping, and dashboard segmentation. Is the data model city-aware at every level?", w: "Retrofitting multi-city support into a single-city architecture is one of the most expensive rewrites possible. It touches every table and every API." },
+                            { q: "FHC service comparison (Req #25) implies a comparison engine. Does the architecture support dynamic service comparison with configurable parameters?", w: "Service comparison needs a flexible attribute system. Flat records without configurable attributes can't support comparison logic." },
+                            { q: "Partner MG plans (Reqs #15, #16) need job count tracking against minimums, deficit/surplus calculation, and payout adjustments. Is this logic standalone or embedded in the payout flow?", w: "MG logic interacts with booking completion, payouts, and performance. If tightly coupled, changes to any of these break MG calculations." },
+                            { q: "Product analytics (Req #34) requires event tracking across all three apps with a unified identity. Is there a unified event schema, or ad-hoc events in different formats?", w: "Without a unified event taxonomy, analytics data is unreliable. You can't build funnels if the same event has different names in different apps." },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 9,
+                title: "Handover & Knowledge Transfer Readiness",
+                context: "The quality of the handover determines how quickly the new team can become productive. A poor handover can add 2–4 months of discovery time before any real development can begin.",
+                subsections: [
+                    {
+                        id: "9.1",
+                        title: "Documentation & Transition Artifacts",
+                        questions: [
+                            { q: "Can you provide: (a) System architecture diagram, (b) Database ER diagram, (c) API documentation, (d) Deployment runbook, (e) Environment variables & config docs, (f) Third-party integration credentials & docs?", w: "These are the minimum deliverables from any tech engagement. Their absence indicates a documentation-poor engagement that will be expensive to take over." },
+                            { q: "Is there a Git repository with clean commit history? Are there meaningful commit messages and PR reviews, or was code pushed directly to main/master?", w: "Commit history is the narrative of the project. Direct pushes to main without PRs suggest no code review process was followed." },
+                            { q: "How many person-months of effort have gone into the project so far? Can you provide a timeline of what was built, sprint by sprint or milestone by milestone?", w: "This helps assess development velocity and validate whether the cost incurred matches the output delivered." },
+                            { q: "Are there any known critical bugs, performance issues, or security vulnerabilities currently unresolved? Can you provide the bug tracker or issue list?", w: "An honest bug inventory is essential. Discovering critical issues after handover means unplanned work and delayed timelines." },
+                            { q: "What are the current app store ratings and user reviews? Are there recurring complaints that point to systemic technical issues?", w: "User reviews are the most honest assessment of app quality. Recurring complaints indicate deep technical issues." },
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // ─── RENDER ───
+
+        function render() {
+            const container = document.getElementById('mainContent');
+            let totalQ = 0;
+            let totalSub = 0;
+            DATA.forEach(s => { s.subsections.forEach(ss => { totalQ += ss.questions.length; totalSub++; }); });
+
+            document.getElementById('coverDate').textContent = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('coverCount').textContent = totalQ + ' Questions';
+            document.getElementById('coverDomains').textContent = DATA.length + ' Domains, ' + totalSub + ' Sub-domains';
+
+            let html = '';
+
+            // Purpose
+            html += `
+    <div class="purpose fade-up">
+      <h2>Purpose of This Audit</h2>
+      <p>This document contains a structured set of technical audit questions designed to comprehensively evaluate the current state of the City Craft platform. The audit covers architecture, infrastructure, security, business logic, code quality, integrations, and scalability readiness.</p>
+      <p>Each question is accompanied by a rationale explaining why the answer matters for the platform's future development, operational stability, and cost-efficiency. The audit is mapped against City Craft's 34 stated requirements and benchmarked against industry standards for services marketplaces.</p>
+      <p>The responses will form the basis of a detailed assessment report covering: what has been built correctly, what has critical issues needing remediation, what architectural changes are required for the planned roadmap, and a realistic cost and timeline estimate.</p>
+      <div class="evidence-note">All questions should be answered with supporting evidence where possible — architecture diagrams, code snippets, configuration files, load test reports, cost breakdowns, or screenshots. Verbal answers without evidence will be noted as unverified in the assessment report.</div>
+    </div>
+  `;
+
+            // Summary table
+            html += `<div class="summary-section fade-up"><h2>Audit Summary</h2><table class="summary-table"><thead><tr><th>Section</th><th>Sub-sections</th><th>Questions</th></tr></thead><tbody>`;
+            DATA.forEach(s => {
+                const qc = s.subsections.reduce((a, ss) => a + ss.questions.length, 0);
+                html += `<tr><td><a class="section-link" href="#section-${s.id}">${s.id}. ${s.title}</a></td><td>${s.subsections.length}</td><td>${qc}</td></tr>`;
+            });
+            html += `</tbody><tfoot><tr><td>TOTAL</td><td>${totalSub}</td><td>${totalQ}</td></tr></tfoot></table></div>`;
+
+            // Sections
+            DATA.forEach(s => {
+                html += `<div class="audit-section fade-up" id="section-${s.id}">`;
+                html += `<div class="section-header"><div class="section-number">${String(s.id).padStart(2, '0')}</div><div class="section-title-block"><div class="section-title">${s.title}</div></div></div>`;
+                html += `<div class="section-context">${s.context}</div>`;
+
+                s.subsections.forEach(ss => {
+                    html += `<div class="subsection"><div class="subsection-header"><div class="subsection-id">${ss.id}</div><div class="subsection-title">${ss.title}</div></div>`;
+                    html += `<table class="q-table"><thead><tr><th>#</th><th>Audit Question</th><th>Why This Matters</th></tr></thead><tbody>`;
+                    ss.questions.forEach((q, i) => {
+                        html += `<tr><td>${i + 1}</td><td class="q-text">${q.q}</td><td class="q-why">${q.w}</td></tr>`;
+                    });
+                    html += `</tbody></table></div>`;
+                });
+                html += `</div>`;
+            });
+
+            // Next Steps
+            html += `
+    <div class="next-steps fade-up">
+      <h2>Next Steps</h2>
+      <p style="margin-bottom:24px;color:#525252;font-size:15px;">Upon receiving responses to this audit questionnaire, we will prepare a comprehensive Technical Assessment Report that will include:</p>
+      <ul class="next-steps-list">
+        <li><span><strong>Architecture Health Score</strong> — A graded assessment (A to F) across each audit domain, with specific findings mapped to risk levels (Critical, High, Medium, Low).</span></li>
+        <li><span><strong>Reusability Analysis</strong> — A component-by-component assessment of what can be retained as-is, what needs modification, and what must be rebuilt from scratch.</span></li>
+        <li><span><strong>Gap Analysis Against Requirements</strong> — For each of the 34 stated requirements, whether the current architecture can support it, needs modification, or requires a new subsystem.</span></li>
+        <li><span><strong>Revised Cost & Timeline Estimate</strong> — Based on the actual state of the codebase (not assumptions), a detailed estimate covering remediation, new development, and operational costs.</span></li>
+        <li><span><strong>Recommended Architecture</strong> — A target-state architecture that supports multi-city scaling, the complete feature roadmap, and operational excellence.</span></li>
+        <li><span><strong>Risk Register</strong> — Identified risks with likelihood, impact, and recommended mitigations.</span></li>
+      </ul>
+      <div class="closing-note">This audit is designed to be thorough but fair. The goal is not to criticize for its own sake, but to establish an honest baseline so that the City Craft team can make informed decisions about the path forward.</div>
+    </div>
+  `;
+
+            // Footer
+            html += `
+    <div class="footer fade-up">
+      <div class="footer-brand">Elevate Box</div>
+      <div class="footer-note">Confidential — City Craft Technical Audit</div>
+    </div>
+  `;
+
+            container.innerHTML = html;
+
+            // Trigger animations
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.fade-up').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 60);
+                });
+            });
+        }
+
+        // ─── SCROLL HANDLERS ───
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            const btn = document.getElementById('backToTop');
+            btn.classList.toggle('visible', scrollTop > 600);
+
+            // Lazy fade-in
+            document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', render);
+    </script>
+</body>
+
+</html>

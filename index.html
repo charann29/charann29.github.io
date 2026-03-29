@@ -1300,6 +1300,21 @@
       }
     }
   </style>
+
+<!-- Firebase SDK (compat for Phone Auth with reCAPTCHA) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script>
+  firebase.initializeApp({
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "iiath-bc694.firebaseapp.com",
+    projectId: "iiath-bc694",
+    storageBucket: "iiath-bc694.firebasestorage.app",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "G-X7XZ7DJFW1"
+  });
+</script>
 </head>
 
 <body class="__variable_188709 __variable_9a8899 antialiased bg-background">
@@ -1336,7 +1351,7 @@
                   href="/"><span class="leading-none">Home</span></a></li>
               <li class="relative group/item">
                 <div
-                  class="relative inline-flex items-center gap-1.5 duration-150 cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none text-white">
+                  class="relative inline-flex items-center gap-1.5 duration-150 cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none text-neutral-800 hover:text-primary">
                   <span class="leading-none">Campuses</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round"
@@ -1367,7 +1382,7 @@
               </li>
               <li class="relative" id="resources-menu-item">
                 <button type="button" aria-expanded="false" id="resources-toggle"
-                  class="relative inline-flex items-center gap-1.5 duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none text-white"><span
+                  class="relative inline-flex items-center gap-1.5 duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none text-neutral-800 hover:text-primary"><span
                     class="leading-none">Resources</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round"
@@ -1377,18 +1392,10 @@
                   </svg></button>
               </li>
               <li class="relative group/item"><a data-prefetch="true"
-                  class="relative inline-flex items-center gap-1.5 duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none focus-visible:outline-none text-white"
+                  class="relative inline-flex items-center gap-1.5 duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus:outline-none focus-visible:outline-none text-neutral-800 hover:text-primary"
                   href="/allfaqs/"><span class="leading-none">FAQs</span></a></li>
             </ul>
             <div class="flex items-center gap-3">
-              <button id="theme-toggle" aria-label="Toggle dark mode"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border hover:bg-accent hover:text-accent-foreground h-9 w-9 border-border bg-background/20 backdrop-blur-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="lucide lucide-moon" aria-hidden="true">
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                </svg>
-              </button>
               <a href="/apply/"
                 class="inline-flex items-center justify-center whitespace-nowrap rounded-full px-5 h-10 text-sm font-semibold text-white bg-[var(--primary)] hover:bg-[var(--primary)]/90 transition-colors shadow-md">
                 Apply Now
@@ -1559,12 +1566,12 @@
     <div class="relative">
       <main class="overflow-x-hidden text-white">
         <section class="landing-hero relative">
-            <div class="relative pt-40 pb-24 md:pt-44 md:pb-28 lg:pt-48 lg:pb-32 min-h-[88vh] flex">
+            <div class="relative pt-52 pb-24 md:pt-56 md:pb-28 lg:pt-60 lg:pb-32 min-h-[88vh] flex">
             <div class="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-4 sm:px-6 lg:px-12 w-full mt-4 md:mt-6 lg:mt-8">
               <div class="w-full text-center">
                 <div
                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold hero-pill"
-                  style="margin-top:5rem;">
+                  style="margin-top:8rem;">
                   Admissions Open for 2026 Batch — IIAT SAT Registration Free
                 </div>
                 <h1 class="hero-title mt-6 font-black leading-[1.15]" style="font-size:clamp(1.25rem, 4vw, 3.75rem);">
@@ -4671,6 +4678,8 @@
           </div>
         </div>
       </div>
+      <!-- MENTORS SECTION HIDDEN - To restore, remove the wrapper div with display:none -->
+      <div style="display:none !important;">
       <div>
         <style>
           @keyframes mentor-pulse-glow {
@@ -5599,6 +5608,8 @@
           </div>
         </div>
       </div>
+      </div>
+      <!-- END MENTORS SECTION HIDDEN -->
       <div>
         <section class="relative py-8 sm:py-10 md:py-12 dark:bg-black transition-colors duration-300">
           <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
@@ -8967,6 +8978,868 @@
       });
     })();
   </script>
+
+  <!-- Chatbot-style Apply Now Widget -->
+  <style>
+    /* Chatbot Floating Button */
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #e34614;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(227, 70, 20, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: chatbot-pulse 2s infinite;
+    }
+    #chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(227, 70, 20, 0.55);
+    }
+    #chatbot-toggle svg {
+      width: 28px;
+      height: 28px;
+      transition: transform 0.3s ease;
+    }
+    #chatbot-toggle.open svg.chat-icon { display: none; }
+    #chatbot-toggle.open svg.close-icon { display: block; }
+    #chatbot-toggle:not(.open) svg.chat-icon { display: block; }
+    #chatbot-toggle:not(.open) svg.close-icon { display: none; }
+
+    @keyframes chatbot-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(227, 70, 20, 0.45); }
+      50% { box-shadow: 0 4px 30px rgba(227, 70, 20, 0.7); }
+    }
+
+    /* Chatbot Window */
+    #chatbot-window {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      z-index: 9998;
+      width: 370px;
+      max-width: calc(100vw - 32px);
+      max-height: 520px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+      display: none;
+      flex-direction: column;
+      font-family: 'Geist', system-ui, -apple-system, sans-serif;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+    }
+    #chatbot-window.visible {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    #chatbot-window.hiding {
+      display: flex;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    /* Header */
+    .chatbot-header {
+      background: linear-gradient(135deg, #e34614 0%, #cc5227 100%);
+      color: #fff;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chatbot-header-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .chatbot-header-avatar svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+    .chatbot-header-info h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff !important;
+    }
+    .chatbot-header-info p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      opacity: 0.85;
+      color: #fff !important;
+    }
+    .chatbot-header-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      margin-left: -4px;
+      margin-top: 14px;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    /* Chat Body */
+    .chatbot-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      background: #fef6e8;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 280px;
+      max-height: 340px;
+    }
+
+    /* Chat Bubbles */
+    .chat-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      animation: chatFadeIn 0.35s ease;
+    }
+    .chat-msg.bot {
+      background: #f7e8ca;
+      color: #3b2314;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-msg.user {
+      background: #e34614;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    @keyframes chatFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typing indicator */
+    .chat-typing {
+      display: flex;
+      gap: 4px;
+      padding: 10px 16px;
+      background: #f7e8ca;
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+      animation: chatFadeIn 0.3s ease;
+    }
+    .chat-typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c4a882;
+      animation: typingBounce 1.2s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+
+    /* Input area */
+    .chatbot-input-area {
+      background: #fef6e8;
+      border-top: 1px solid #f0dbb8;
+      padding: 12px 16px;
+    }
+    .chatbot-input-area input,
+    .chatbot-input-area select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e0cba5;
+      border-radius: 12px;
+      font-size: 14px;
+      background: #fff;
+      color: #3b2314;
+      outline: none;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .chatbot-input-area input:focus,
+    .chatbot-input-area select:focus {
+      border-color: #e34614;
+    }
+    .chatbot-input-area input::placeholder {
+      color: #b8a08a;
+    }
+    .chatbot-input-area select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23735a42' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    .chatbot-input-area select option {
+      color: #3b2314;
+      background: #fff;
+    }
+
+    .chatbot-send-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 12px;
+      border: none;
+      background: #e34614;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      font-family: inherit;
+    }
+    .chatbot-send-btn:hover {
+      background: #cc3e10;
+    }
+    .chatbot-send-btn:active {
+      transform: scale(0.98);
+    }
+    .chatbot-send-btn:disabled {
+      background: #d4b896;
+      cursor: not-allowed;
+    }
+
+    /* Success message */
+    .chatbot-success {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .chatbot-success svg {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+    }
+    .chatbot-success h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2d1a0e !important;
+      margin: 0 0 6px;
+    }
+    .chatbot-success p {
+      font-size: 13px;
+      color: #735a42 !important;
+      margin: 0;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 480px) {
+      #chatbot-window {
+        right: 8px;
+        left: 8px;
+        bottom: 88px;
+        width: auto;
+        max-height: 70vh;
+      }
+      #chatbot-toggle {
+        bottom: 16px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+      }
+    }
+
+    /* Badge notification dot */
+    .chatbot-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 16px;
+      height: 16px;
+      background: #4ade80;
+      border-radius: 50%;
+      border: 2.5px solid #fff;
+      animation: badgePop 0.4s ease;
+    }
+    @keyframes badgePop {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    /* OTP input styles */
+    .chatbot-otp-group {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .chatbot-otp-group input {
+      width: 40px;
+      height: 44px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: 1.5px solid #e0d5c8;
+      border-radius: 8px;
+      background: #fff;
+      color: #3b2314;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chatbot-otp-group input:focus {
+      border-color: #e34614;
+      box-shadow: 0 0 0 2px rgba(227,70,20,0.12);
+    }
+    .chatbot-otp-timer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #8a7a6a;
+      margin-top: 4px;
+    }
+    .chatbot-otp-timer a {
+      color: #e34614;
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .chatbot-otp-timer a.disabled {
+      color: #bbb;
+      pointer-events: none;
+      text-decoration: none;
+    }
+    .chatbot-otp-error {
+      color: #e34614;
+      font-size: 0.78rem;
+      text-align: center;
+      margin-top: 2px;
+    }
+    #recaptcha-container {
+      /* Keep it out of sight but in DOM */
+    }
+  </style>
+
+  <!-- Chatbot Toggle Button -->
+  <button id="chatbot-toggle" aria-label="Open Apply Now chat">
+    <span class="chatbot-badge" id="chatbot-badge"></span>
+    <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Chatbot Window -->
+  <div id="chatbot-window">
+    <!-- Header -->
+    <div class="chatbot-header">
+      <div class="chatbot-header-avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+      </div>
+      <div class="chatbot-header-dot"></div>
+      <div class="chatbot-header-info">
+        <h4>IIAT Admissions</h4>
+        <p>Typically replies instantly</p>
+      </div>
+    </div>
+    <!-- Chat Body -->
+    <div class="chatbot-body" id="chatbot-body"></div>
+    <!-- Input Area -->
+    <div class="chatbot-input-area" id="chatbot-input-area"></div>
+  </div>
+
+  <!-- Invisible reCAPTCHA container for Firebase Phone Auth -->
+  <div id="recaptcha-container"></div>
+
+  <script>
+  (function() {
+    var toggleBtn = document.getElementById('chatbot-toggle');
+    var chatWindow = document.getElementById('chatbot-window');
+    var chatBody = document.getElementById('chatbot-body');
+    var inputArea = document.getElementById('chatbot-input-area');
+    var badge = document.getElementById('chatbot-badge');
+    var isOpen = false;
+    var step = 0; // 0=greeting, 1=name, 2=phone, 3=otp, 4=branch, 5=submitting, 6=done
+    var formData = { name: '', phone: '', branch: '' };
+
+    // Firebase Phone Auth state
+    var recaptchaVerifier = null;
+    var confirmationResult = null;
+    var otpResendTimer = null;
+    var recaptchaReady = false;
+
+    var branches = [
+      'B.Tech CSE (AI & Data Science)',
+      'B.Tech CSE (FinTech & AI)',
+      'B.Tech CSE (Cyber Security with AI/ML)',
+      'B.Tech CSE (Core)',
+      'B.Tech CSE (AI & Machine Learning)',
+      'B.Tech Biomedical Engineering, AI & Medical Robotics'
+    ];
+
+    // Initialize invisible reCAPTCHA
+    function initRecaptcha() {
+      if (recaptchaReady) return;
+      try {
+        // Clear any existing reCAPTCHA
+        var container = document.getElementById('recaptcha-container');
+        if (container) container.innerHTML = '';
+
+        recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+          size: 'invisible',
+          callback: function() {
+            // reCAPTCHA solved - will proceed with sendOtp
+          },
+          'expired-callback': function() {
+            recaptchaReady = false;
+            recaptchaVerifier = null;
+          }
+        });
+        recaptchaVerifier.render().then(function() {
+          recaptchaReady = true;
+        });
+      } catch (e) {
+        console.error('reCAPTCHA init error:', e);
+      }
+    }
+
+    function addBotMsg(text, delay) {
+      return new Promise(function(resolve) {
+        var typing = document.createElement('div');
+        typing.className = 'chat-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chatBody.appendChild(typing);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        setTimeout(function() {
+          if (typing.parentNode) chatBody.removeChild(typing);
+          var msg = document.createElement('div');
+          msg.className = 'chat-msg bot';
+          msg.textContent = text;
+          chatBody.appendChild(msg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+          resolve();
+        }, delay || 800);
+      });
+    }
+
+    function addUserMsg(text) {
+      var msg = document.createElement('div');
+      msg.className = 'chat-msg user';
+      msg.textContent = text;
+      chatBody.appendChild(msg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showNameInput() {
+      inputArea.innerHTML = '';
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Type your full name...';
+      input.id = 'chatbot-name-input';
+      input.autocomplete = 'name';
+      var btn = document.createElement('button');
+      btn.className = 'chatbot-send-btn';
+      btn.textContent = 'Send';
+      btn.onclick = function() {
+        var val = input.value.trim();
+        if (!val) { input.style.borderColor = '#e34614'; return; }
+        formData.name = val;
+        addUserMsg(val);
+        step = 2;
+        inputArea.innerHTML = '';
+        addBotMsg('Nice to meet you, ' + val + '! What\'s your phone number so we can reach you?', 600).then(showPhoneInput);
+      };
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
+      inputArea.appendChild(input);
+      inputArea.appendChild(btn);
+      setTimeout(function() { input.focus(); }, 100);
+    }
+
+    function showPhoneInput() {
+      inputArea.innerHTML = '';
+      var input = document.createElement('input');
+      input.type = 'tel';
+      input.placeholder = 'Enter your 10-digit phone number...';
+      input.id = 'chatbot-phone-input';
+      input.autocomplete = 'tel';
+      input.maxLength = 10;
+      input.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+      var btn = document.createElement('button');
+      btn.className = 'chatbot-send-btn';
+      btn.textContent = 'Verify';
+      btn.onclick = function() {
+        var val = input.value.trim();
+        if (!/^[6-9]\d{9}$/.test(val)) {
+          input.style.borderColor = '#e34614';
+          input.placeholder = 'Please enter a valid 10-digit number';
+          return;
+        }
+        formData.phone = val;
+        addUserMsg(val);
+        step = 3;
+        inputArea.innerHTML = '';
+        sendOtp(val);
+      };
+      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') btn.click(); });
+      inputArea.appendChild(input);
+      inputArea.appendChild(btn);
+      setTimeout(function() { input.focus(); }, 100);
+
+      // Pre-init reCAPTCHA while user types phone
+      initRecaptcha();
+    }
+
+    function sendOtp(phone) {
+      addBotMsg('Sending a verification code to +91 ' + phone + '...', 500).then(function() {
+        // Re-init reCAPTCHA if needed
+        if (!recaptchaVerifier) {
+          initRecaptcha();
+        }
+
+        var phoneNumber = '+91' + phone;
+        firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
+          .then(function(result) {
+            confirmationResult = result;
+            addBotMsg('A 6-digit OTP has been sent to your phone. Please enter it below.', 500).then(function() {
+              showOtpInput();
+            });
+          })
+          .catch(function(error) {
+            console.error('OTP send error:', error);
+            // Reset reCAPTCHA on error
+            recaptchaReady = false;
+            recaptchaVerifier = null;
+
+            var errorMsg = 'Sorry, we couldn\'t send the OTP. ';
+            if (error.code === 'auth/too-many-requests') {
+              errorMsg += 'Too many attempts. Please try again later.';
+            } else if (error.code === 'auth/invalid-phone-number') {
+              errorMsg += 'The phone number appears to be invalid.';
+            } else if (error.code === 'auth/quota-exceeded') {
+              errorMsg += 'SMS quota exceeded. Please try again later.';
+            } else {
+              errorMsg += 'Please try again.';
+            }
+            addBotMsg(errorMsg, 400).then(function() {
+              return addBotMsg('Let\'s try your phone number again.', 400);
+            }).then(function() {
+              step = 2;
+              showPhoneInput();
+            });
+          });
+      });
+    }
+
+    function showOtpInput() {
+      inputArea.innerHTML = '';
+
+      // Create OTP digit inputs (6 digits)
+      var otpContainer = document.createElement('div');
+      otpContainer.style.cssText = 'display:flex;flex-direction:column;width:100%;padding:4px 0;';
+
+      var otpGroup = document.createElement('div');
+      otpGroup.className = 'chatbot-otp-group';
+
+      var otpInputs = [];
+      for (var i = 0; i < 6; i++) {
+        (function(idx) {
+          var inp = document.createElement('input');
+          inp.type = 'text';
+          inp.inputMode = 'numeric';
+          inp.maxLength = 1;
+          inp.autocomplete = 'one-time-code';
+          inp.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value && idx < 5) {
+              otpInputs[idx + 1].focus();
+            }
+            // Auto-submit when all 6 filled
+            if (getOtpValue().length === 6) {
+              verifyBtn.click();
+            }
+          });
+          inp.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !this.value && idx > 0) {
+              otpInputs[idx - 1].focus();
+            }
+          });
+          // Handle paste of full OTP
+          inp.addEventListener('paste', function(e) {
+            e.preventDefault();
+            var pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+            for (var j = 0; j < 6 && j < pasted.length; j++) {
+              otpInputs[j].value = pasted[j];
+            }
+            if (pasted.length >= 6) {
+              otpInputs[5].focus();
+              setTimeout(function() { verifyBtn.click(); }, 100);
+            } else if (pasted.length > 0) {
+              otpInputs[Math.min(pasted.length, 5)].focus();
+            }
+          });
+          otpInputs.push(inp);
+          otpGroup.appendChild(inp);
+        })(i);
+      }
+
+      function getOtpValue() {
+        return otpInputs.map(function(inp) { return inp.value; }).join('');
+      }
+
+      // Error display
+      var errorDiv = document.createElement('div');
+      errorDiv.className = 'chatbot-otp-error';
+      errorDiv.style.display = 'none';
+
+      // Timer and resend
+      var timerDiv = document.createElement('div');
+      timerDiv.className = 'chatbot-otp-timer';
+      var resendCountdown = 30;
+
+      var resendLink = document.createElement('a');
+      resendLink.className = 'disabled';
+      resendLink.textContent = 'Resend OTP (' + resendCountdown + 's)';
+      resendLink.onclick = function() {
+        if (resendLink.classList.contains('disabled')) return;
+        resendLink.classList.add('disabled');
+        errorDiv.style.display = 'none';
+        // Reset reCAPTCHA for resend
+        recaptchaReady = false;
+        recaptchaVerifier = null;
+        initRecaptcha();
+        // Small delay to let reCAPTCHA init
+        setTimeout(function() {
+          var phoneNumber = '+91' + formData.phone;
+          firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
+            .then(function(result) {
+              confirmationResult = result;
+              addBotMsg('New OTP sent! Please check your phone.', 400);
+              startResendTimer();
+            })
+            .catch(function(error) {
+              console.error('Resend error:', error);
+              errorDiv.textContent = 'Failed to resend. Please try again.';
+              errorDiv.style.display = 'block';
+              resendLink.classList.remove('disabled');
+              resendLink.textContent = 'Resend OTP';
+            });
+        }, 1000);
+      };
+      timerDiv.appendChild(resendLink);
+
+      function startResendTimer() {
+        resendCountdown = 30;
+        resendLink.classList.add('disabled');
+        resendLink.textContent = 'Resend OTP (' + resendCountdown + 's)';
+        if (otpResendTimer) clearInterval(otpResendTimer);
+        otpResendTimer = setInterval(function() {
+          resendCountdown--;
+          if (resendCountdown <= 0) {
+            clearInterval(otpResendTimer);
+            resendLink.classList.remove('disabled');
+            resendLink.textContent = 'Resend OTP';
+          } else {
+            resendLink.textContent = 'Resend OTP (' + resendCountdown + 's)';
+          }
+        }, 1000);
+      }
+      startResendTimer();
+
+      // Verify button
+      var verifyBtn = document.createElement('button');
+      verifyBtn.className = 'chatbot-send-btn';
+      verifyBtn.textContent = 'Verify OTP';
+      verifyBtn.style.marginTop = '4px';
+      verifyBtn.onclick = function() {
+        var otp = getOtpValue();
+        if (otp.length !== 6) {
+          errorDiv.textContent = 'Please enter the complete 6-digit OTP';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        verifyBtn.disabled = true;
+        verifyBtn.textContent = 'Verifying...';
+        errorDiv.style.display = 'none';
+
+        confirmationResult.confirm(otp)
+          .then(function(result) {
+            // OTP verified successfully
+            if (otpResendTimer) clearInterval(otpResendTimer);
+            addUserMsg('OTP verified');
+            inputArea.innerHTML = '';
+            step = 4;
+            addBotMsg('Phone number verified successfully!', 400).then(function() {
+              return addBotMsg('Great! Which B.Tech branch are you interested in?', 600);
+            }).then(showBranchSelect);
+          })
+          .catch(function(error) {
+            console.error('OTP verify error:', error);
+            verifyBtn.disabled = false;
+            verifyBtn.textContent = 'Verify OTP';
+            if (error.code === 'auth/invalid-verification-code') {
+              errorDiv.textContent = 'Invalid OTP. Please check and try again.';
+            } else if (error.code === 'auth/code-expired') {
+              errorDiv.textContent = 'OTP expired. Please resend.';
+            } else {
+              errorDiv.textContent = 'Verification failed. Please try again.';
+            }
+            errorDiv.style.display = 'block';
+            // Clear inputs
+            otpInputs.forEach(function(inp) { inp.value = ''; });
+            otpInputs[0].focus();
+          });
+      };
+
+      otpContainer.appendChild(otpGroup);
+      otpContainer.appendChild(errorDiv);
+      otpContainer.appendChild(verifyBtn);
+      otpContainer.appendChild(timerDiv);
+      inputArea.appendChild(otpContainer);
+      setTimeout(function() { otpInputs[0].focus(); }, 100);
+    }
+
+    function showBranchSelect() {
+      inputArea.innerHTML = '';
+      var select = document.createElement('select');
+      select.id = 'chatbot-branch-select';
+      var defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = 'Select a branch...';
+      defaultOpt.disabled = true;
+      defaultOpt.selected = true;
+      select.appendChild(defaultOpt);
+      branches.forEach(function(b) {
+        var opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        select.appendChild(opt);
+      });
+      var btn = document.createElement('button');
+      btn.className = 'chatbot-send-btn';
+      btn.textContent = 'Submit Application';
+      btn.onclick = function() {
+        var val = select.value;
+        if (!val) { select.style.borderColor = '#e34614'; return; }
+        formData.branch = val;
+        addUserMsg(val);
+        step = 5;
+        inputArea.innerHTML = '';
+        submitToSupabase();
+      };
+      inputArea.appendChild(select);
+      inputArea.appendChild(btn);
+    }
+
+    function submitToSupabase() {
+      var SUPABASE_URL = 'https://diacczkzcxylmlvysqar.supabase.co';
+      var SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+      addBotMsg('Thank you, ' + formData.name + '! Submitting your application...', 600).then(function() {
+        fetch(SUPABASE_URL + '/rest/v1/leads', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.phone + '@chatbot.iiat',
+            source: 'Chatbot | ' + formData.branch,
+            user_id: '00000000-0000-0000-0000-000000000000'
+          })
+        }).then(function(response) {
+          showSuccessState();
+        }).catch(function() {
+          showSuccessState();
+        });
+      });
+
+      function showSuccessState() {
+        addBotMsg('Your application has been submitted successfully! Our admissions team will call you shortly.', 500).then(function() {
+          inputArea.innerHTML = '<div class="chatbot-success">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>' +
+            '<h4>Application Submitted!</h4>' +
+            '<p>We\'ll reach out to you shortly at ' + formData.phone + '</p>' +
+            '<button class="chatbot-send-btn" style="margin-top:6px;background:transparent;color:#e34614;border:1.5px solid #e34614;" id="chatbot-restart-btn">Start Over</button>' +
+            '</div>';
+          step = 6;
+
+          var restartBtn = document.getElementById('chatbot-restart-btn');
+          if (restartBtn) {
+            restartBtn.onclick = function() {
+              step = 0;
+              formData = { name: '', phone: '', branch: '' };
+              confirmationResult = null;
+              if (otpResendTimer) clearInterval(otpResendTimer);
+              chatBody.innerHTML = '';
+              inputArea.innerHTML = '';
+              // Sign out Firebase user
+              try { firebase.auth().signOut(); } catch(e) {}
+              startChat();
+            };
+          }
+        });
+      }
+    }
+
+    function startChat() {
+      step = 0;
+      addBotMsg('Hey there! Welcome to IIAT Admissions.', 400).then(function() {
+        return addBotMsg('I\'m here to help you apply for our B.Tech CSE programs. Let me quickly get a few details from you.', 700);
+      }).then(function() {
+        step = 1;
+        return addBotMsg('What\'s your name?', 500);
+      }).then(showNameInput);
+    }
+
+    // Toggle chat window
+    toggleBtn.addEventListener('click', function() {
+      if (!isOpen) {
+        chatWindow.classList.remove('hiding');
+        chatWindow.classList.add('visible');
+        toggleBtn.classList.add('open');
+        if (badge) badge.style.display = 'none';
+        isOpen = true;
+        if (step === 0 && chatBody.children.length === 0) {
+          startChat();
+        }
+      } else {
+        chatWindow.classList.add('hiding');
+        chatWindow.classList.remove('visible');
+        toggleBtn.classList.remove('open');
+        isOpen = false;
+        setTimeout(function() {
+          if (!isOpen) chatWindow.classList.remove('hiding');
+        }, 350);
+      }
+    });
+  })();
+  </script>
+
 </body>
 
 </html>
